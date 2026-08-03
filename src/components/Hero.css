@@ -1,0 +1,216 @@
+/* ===== Hero – основной контейнер ===== */
+.hero {
+  position: relative;
+  height: calc(100vh - 88px); /* с учётом фиксированного хедера */
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 88px;
+}
+
+/* ===== Фоновые слои (LQIP) ===== */
+.hero__blur,
+.hero__full {
+  position: absolute;
+  inset: 0; /* покрывает весь родитель */
+  background-size: cover;
+  background-position: center;
+  transition: opacity 1s ease;
+  z-index: 0; /* под градиентом и контентом */
+}
+
+/* Размытый превью – виден сразу */
+.hero__blur {
+  filter: blur(20px);
+  transform: scale(1.05); /* скрывает тёмные края от размытия */
+  opacity: 1;
+}
+
+.hero__full {
+  opacity: 0;
+}
+.hero__full.loaded {
+  opacity: 1;
+}
+
+.hero__blur.hidden {
+  opacity: 0;
+}
+
+/* ===== Осветляющий градиент поверх фона ===== */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  z-index: 1; /* поверх фоновых изображений, под контентом */
+}
+
+/* ===== Контент (текст + карточки) ===== */
+.hero-content {
+  position: relative;
+  z-index: 2; /* поверх градиента */
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+/* ===== Левый блок с текстом ===== */
+.text-block {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+  padding: 28px;
+  max-width: 600px;
+  border-radius: 40px;
+  box-shadow: 4px 4px 20px rgba(87, 13, 98, 0.2);
+}
+
+.text-block h1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  color: var(--color-primary);
+}
+
+.text-block h2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--color-primary);
+  margin-bottom: 20px;
+}
+
+.text-block p {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-black);
+  margin-bottom: 40px;
+}
+
+/* ===== Кнопка ===== */
+.btn-primary {
+  display: inline-block;
+  padding: 14px 36px;
+  background: var(--color-accent);
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition:
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.25s ease,
+    background 0.3s ease;
+  box-shadow: 0 4px 4px rgba(244, 182, 240, 1);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 12px rgba(244, 182, 240, 0.5);
+}
+
+.btn-primary:active {
+  transform: scale(0.97) translateY(0px);
+  box-shadow: 0 2px 4px rgba(244, 182, 240, 0.8);
+  transition: transform 0.1s ease;
+}
+
+/* ===== Правый блок с карточками ===== */
+.cards {
+  display: flex;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.card {
+  width: 180px;
+  height: 300px;
+  background: #ddd;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #666;
+  transition: transform 0.3s;
+}
+
+.card-1 {
+  transform: translateY(20px);
+  background: #f0e6f2;
+}
+.card-2 {
+  transform: translateY(0);
+  background: #e6d6ea;
+}
+.card-3 {
+  transform: translateY(-20px);
+  background: #dcc6e0;
+}
+
+/* ===== Адаптивность ===== */
+@media (max-width: 1024px) {
+  .hero-content {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 20px;
+  }
+
+  .text-block {
+    max-width: 100%;
+    padding: 30px;
+  }
+
+  .cards {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .card {
+    width: 140px;
+    height: 200px;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    min-height: 100vh;
+    padding: 100px 0 60px;
+  }
+
+  .text-block h1 {
+    font-size: 36px;
+  }
+  .text-block h2 {
+    font-size: 24px;
+  }
+  .text-block p {
+    font-size: 16px;
+  }
+
+  .card {
+    width: 100px;
+    height: 150px;
+  }
+}
