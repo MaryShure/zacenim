@@ -1,33 +1,26 @@
 /* ===== About – основной контейнер ===== */
 .about {
-  position: relative;
-  min-height: 600px;
   display: flex;
-  background-color: #f5eff6; /* заливка фона всей секции */
-  padding: 80px 40px;
   gap: 40px;
+  padding: 80px 40px;
   max-width: var(--container-max);
   margin: 0 auto;
-}
-
-.about > * {
-  max-width: var(--container-max);
+  align-items: stretch; /* оба блока одной высоты */
+  background-color: transparent;
 }
 
 /* ===== Блок с заголовком и фоновым изображением ===== */
 .about-header {
   position: relative;
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 0 40px;
+  flex: 1; /* занимает доступное пространство */
+  border-radius: 28px;
   overflow: hidden;
-  border-radius: 28px; /* такой же радиус, как у текстовых блоков */
-  height: 400px; /* подстраиваем под высоту заголовка */
+  background-color: #f5eff6;
+  box-shadow: 4px 4px 20px rgba(87, 13, 98, 0.2);
+  min-height: 280px; /* минимальная высота, чтобы не схлопнулся */
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* текст прижат к левому краю */
-  background-color: #f5eff6; /* запасной цвет, если изображение не загружено */
-  box-shadow: 4px 4px 20px rgba(87, 13, 98, 0.2);
+  padding: 40px; /* внутренние отступы для контента */
 }
 
 /* LQIP слои */
@@ -57,7 +50,7 @@
   opacity: 0;
 }
 
-/* Осветляющий градиент (как в Hero) */
+/* Осветляющий градиент */
 .about-header__gradient {
   position: absolute;
   inset: 0;
@@ -82,18 +75,16 @@
   font-size: 40px;
   color: var(--color-primary);
   margin: 0;
-  text-align: left; /* прижато к левому краю */
+  text-align: left;
   line-height: 1.2;
 }
 
 /* ===== Контент с текстовыми блоками ===== */
 .about-content {
-  width: 100%;
-  max-width: var(--container-max);
-  margin: 0 auto;
-  padding: 0 40px;
+  flex: 1; /* занимает равное пространство с header */
   display: flex;
-  justify-content: flex-end; /* блоки прижаты к правому краю */
+  justify-content: flex-end;
+  align-items: stretch;
 }
 
 .about__right {
@@ -104,7 +95,7 @@
   width: 100%;
 }
 
-/* ===== Текстовые блоки (такие же, как в Hero) ===== */
+/* ===== Текстовые блоки ===== */
 
 .about-text p {
   font-family: "Inter", sans-serif;
@@ -116,6 +107,14 @@
 }
 .about-text p:last-child {
   margin-bottom: 0;
+}
+
+.quote-block {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+  border-radius: 40px;
+  box-shadow: 4px 4px 20px rgba(87, 13, 98, 0.2);
+  padding: 24px 32px;
 }
 
 .quote-block blockquote {
@@ -132,38 +131,52 @@
 @media (max-width: 1024px) {
   .about {
     flex-direction: column;
-    padding: 60px 0;
+    padding: 60px 20px;
     gap: 30px;
   }
-  .about-content {
-    justify-content: center;
-    padding: 0 20px;
+
+  .about-header {
+    flex: none;
+    width: 100%;
+    min-height: 200px;
+    padding: 30px;
   }
+
+  .about-content {
+    flex: none;
+    width: 100%;
+    justify-content: center;
+  }
+
   .about__right {
     max-width: 100%;
-  }
-  .about-header {
-    padding: 0 20px;
   }
 }
 
 @media (max-width: 768px) {
   .about {
-    flex-direction: column;
-    padding: 60px 0;
-    gap: 30px;
+    padding: 40px 16px;
+    gap: 24px;
   }
+
   .about-title {
     font-size: 30px;
   }
+
   .about-header {
-    min-height: 150px;
-  }
-  .about-header__content {
     padding: 24px;
+    min-height: 160px;
+  }
+
+  .about-text {
+    padding: 20px 24px;
   }
   .about-text p {
     font-size: 15px;
+  }
+
+  .quote-block {
+    padding: 20px 24px;
   }
   .quote-block blockquote {
     font-size: 18px;

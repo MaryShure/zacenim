@@ -3,6 +3,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import About from "./components/About";
+import Stats from "./components/Stats";
+import Steps from "./components/Steps";
 
 function App() {
   return (
@@ -10,6 +12,8 @@ function App() {
       <Header />
       <Hero />
       <About />
+      <Stats />
+      <Steps />
       <Footer />
     </div>
   );

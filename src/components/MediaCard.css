@@ -1,0 +1,88 @@
+.media-card {
+  position: relative;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  display: block; /* чтобы ссылка занимала всю площадь */
+  text-decoration: none;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Затемнение и иконка при наведении */
+.media-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(191, 97, 185, 0);
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-card:hover .media-card__overlay {
+  background: rgba(191, 97, 185, 0.4);
+}
+
+/* Кнопка Play */
+.media-card__play {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 48px;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0;
+  transform: scale(0.8);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-card:hover .media-card__play {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.media-card__play .clicked {
+  transform: scale(0.7);
+  transition: transform 0.1s ease;
+}
+
+/* Подписи в левом нижнем углу */
+.media-card__labels {
+  position: absolute;
+  bottom: 40px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  pointer-events: none; /* чтобы клик проходил сквозь на ссылку */
+}
+
+.media-card__subtitle {
+  display: inline-block;
+  background: #bf61b9;
+  padding: 4px 14px;
+  border-radius: 12px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.media-card__title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+}

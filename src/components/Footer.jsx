@@ -1,4 +1,5 @@
 import { Link as ScrollLink } from "react-scroll";
+import { FaInstagram, FaTelegramPlane, FaTiktok } from "react-icons/fa";
 
 function Footer() {
   return (
@@ -36,7 +37,7 @@ function Footer() {
           </ul>
         </div>
 
-        {/* Колонка "Соцсети" */}
+        {/* Колонка "Соцсети" с иконками */}
         <div className="footer-column">
           <h3 className="footer-title">Соцсети</h3>
           <ul>
@@ -45,7 +46,9 @@ function Footer() {
                 href="https://instagram.com/zacenim.by"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="footer-social-link"
               >
+                <FaInstagram className="footer-social-icon" />
                 @zacenim.by
               </a>
             </li>
@@ -54,7 +57,9 @@ function Footer() {
                 href="https://t.me/zacenim.by"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="footer-social-link"
               >
+                <FaTelegramPlane className="footer-social-icon" />
                 @zacenim.by
               </a>
             </li>
@@ -63,8 +68,10 @@ function Footer() {
                 href="https://tiktok.com/@zacenim_by"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="footer-social-link"
               >
-                @zacenim.by
+                <FaTiktok className="footer-social-icon" />
+                @zacenim_by
               </a>
             </li>
           </ul>

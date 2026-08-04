@@ -1,0 +1,155 @@
+/* src/components/Stats.css */
+
+.stats {
+  padding: 80px 0;
+  background-color: white;
+  box-shadow: 0px 0px 40px rgba(87, 13, 98, 0.2);
+}
+
+.stats-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ===== Заголовок ===== */
+.stats-title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+  line-height: 1.2;
+  max-width: 800px;
+}
+
+/* ===== Подзаголовок ===== */
+.stats-subtitle {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--color-black);
+  margin-bottom: 40px;
+}
+
+/* ===== Карточка ===== */
+.stats-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+  border-radius: 40px;
+  box-shadow: 4px 4px 20px rgba(87, 13, 98, 0.2);
+  padding: 20px 30px;
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.stats-card__left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ===== Иконка ===== */
+.stats-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+/* ===== Информация об аккаунте ===== */
+.stats-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.stats-username {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--color-black);
+}
+
+.stats-details {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #555;
+}
+
+/* ===== Кнопка (переиспользуем .btn-primary, но с небольшими правками) ===== */
+.stats-btn {
+  flex-shrink: 0;
+  padding: 12px 32px;
+  font-weight: 500;
+}
+
+/* ===== Адаптивность ===== */
+@media (max-width: 768px) {
+  .stats-container {
+    padding: 0 20px;
+  }
+
+  .stats-title {
+    font-size: 30px;
+  }
+
+  .stats-subtitle {
+    font-size: 20px;
+  }
+
+  .stats-card {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    padding: 24px;
+  }
+
+  .stats-card__left {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .stats-info {
+    align-items: center;
+  }
+
+  .stats-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-title {
+    font-size: 26px;
+  }
+
+  .stats-subtitle {
+    font-size: 18px;
+  }
+
+  .stats-card {
+    padding: 20px;
+  }
+
+  .stats-username {
+    font-size: 18px;
+  }
+}

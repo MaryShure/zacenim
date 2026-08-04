@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Hero.css";
 import fullImage from "../assets/gomel_full.webp";
 import pixelImage from "../assets/gomel_pixel.jpg";
+import MediaCard from "./MediaCard";
 
 const Hero = () => {
   const [fullLoaded, setFullLoaded] = useState(false);
@@ -34,7 +35,12 @@ const Hero = () => {
         </div>
 
         <div className="cards">
-          <div className="card card-1">1</div>
+          <MediaCard
+            width="180px"
+            height="300px"
+            image="https://sferas.by/wp-content/uploads/2024/04/ispytanie-gidranta-1.png"
+            link="https://example.com"
+          />
           <div className="card card-2">2</div>
           <div className="card card-3">3</div>
         </div>

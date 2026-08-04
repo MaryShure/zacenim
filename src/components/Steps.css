@@ -1,0 +1,163 @@
+/* src/components/Steps.css */
+
+.steps {
+  padding: 80px 0;
+}
+
+.steps-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 40px;
+  text-align: center;
+}
+
+/* ===== Заголовки ===== */
+.steps-title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.steps-subtitle {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--color-black);
+  margin-bottom: 48px;
+}
+
+/* ===== Сетка карточек (родитель для линии) ===== */
+.steps-grid {
+  position: relative; /* для позиционирования линии */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  align-items: stretch;
+}
+
+/* ===== Линия, проходящая за карточками ===== */
+.steps-grid::before {
+  content: "";
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--color-primary);
+  opacity: 0.25;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ===== Карточка ===== */
+.step-card {
+  background: rgba(255, 255, 255, 1);
+  backdrop-filter: blur(2px);
+  border-radius: 20px;
+  box-shadow: 4px 4px 20px rgba(87, 13, 98, 0.2);
+  padding: 40px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 280px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  position: relative; /* чтобы быть над линией */
+  z-index: 1;
+}
+
+.step-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 6px 6px 30px rgba(87, 13, 98, 0.25);
+}
+
+/* ===== Иконка ===== */
+.step-icon {
+  margin-bottom: 20px;
+}
+
+.step-icon__circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 64px;
+  flex-shrink: 0;
+}
+
+/* ===== Заголовок карточки ===== */
+.step-title {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--color-black);
+  margin: 0 0 8px 0;
+}
+
+/* ===== Текст карточки ===== */
+.step-text {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--color-black);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ===== Адаптивность ===== */
+
+/* Планшеты и небольшие ноутбуки – 2 колонки, линию скрываем */
+@media (max-width: 1024px) {
+  .steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .steps-grid::before {
+    display: none; /* линия не нужна при двух рядах */
+  }
+
+  .steps-title {
+    font-size: 34px;
+  }
+}
+
+/* Мобильные – 1 колонка */
+@media (max-width: 640px) {
+  .steps-container {
+    padding: 0 20px;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .steps-title {
+    font-size: 28px;
+  }
+
+  .steps-subtitle {
+    font-size: 20px;
+  }
+
+  .step-card {
+    padding: 32px 20px;
+    min-height: auto;
+  }
+
+  .step-icon__circle {
+    width: 100px;
+    height: 100px;
+    font-size: 54px;
+  }
+}
