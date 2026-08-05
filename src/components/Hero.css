@@ -1,7 +1,7 @@
 /* ===== Hero – основной контейнер ===== */
 .hero {
   position: relative;
-  height: calc(100vh - 88px); /* с учётом фиксированного хедера */
+  height: calc(100vh - 88px);
   min-height: 600px;
   display: flex;
   align-items: center;
@@ -13,17 +13,16 @@
 .hero__blur,
 .hero__full {
   position: absolute;
-  inset: 0; /* покрывает весь родитель */
+  inset: 0;
   background-size: cover;
   background-position: center;
   transition: opacity 1s ease;
-  z-index: 0; /* под градиентом и контентом */
+  z-index: 0;
 }
 
-/* Размытый превью – виден сразу */
 .hero__blur {
   filter: blur(20px);
-  transform: scale(1.05); /* скрывает тёмные края от размытия */
+  transform: scale(1.05);
   opacity: 1;
 }
 
@@ -33,12 +32,11 @@
 .hero__full.loaded {
   opacity: 1;
 }
-
 .hero__blur.hidden {
   opacity: 0;
 }
 
-/* ===== Осветляющий градиент поверх фона ===== */
+/* ===== Осветляющий градиент ===== */
 .hero::before {
   content: "";
   position: absolute;
@@ -48,13 +46,13 @@
     rgba(255, 255, 255, 0.5) 0%,
     rgba(255, 255, 255, 1) 100%
   );
-  z-index: 1; /* поверх фоновых изображений, под контентом */
+  z-index: 1;
 }
 
-/* ===== Контент (текст + карточки) ===== */
+/* ===== Контент ===== */
 .hero-content {
   position: relative;
-  z-index: 2; /* поверх градиента */
+  z-index: 2;
   width: 100%;
   max-width: var(--container-max);
   margin: 0 auto;
@@ -65,7 +63,7 @@
   gap: 40px;
 }
 
-/* ===== Левый блок с текстом ===== */
+/* ===== Левый блок ===== */
 .text-block {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(2px);
@@ -130,39 +128,64 @@
   transition: transform 0.1s ease;
 }
 
-/* ===== Правый блок с карточками ===== */
-.cards {
+/* ===== БЕСКОНЕЧНАЯ ГОРИЗОНТАЛЬНАЯ ГАЛЕРЕЯ ===== */
+.gallery-wrapper {
+  overflow: hidden; /* Скрываем всё, что выходит за пределы */
+  width: 100%;
+  max-width: 600px; /* Ограничиваем ширину галереи */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.gallery-track {
   display: flex;
   gap: 20px;
-  flex-shrink: 0;
+  width: max-content; /* Ширина равна содержимому */
+  animation: scroll 25s linear infinite; /* Запускаем бесконечную анимацию */
 }
 
-.card {
-  width: 180px;
+/* Эффект "паузы" при наведении курсора */
+.gallery-wrapper:hover .gallery-track {
+  animation-play-state: paused;
+}
+
+.gallery-item {
+  flex-shrink: 0; /* Запрещаем карточкам сжиматься */
+  width: 200px;
   height: 300px;
-  background: #ddd;
   border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  font-weight: 700;
-  color: #666;
-  transition: transform 0.3s;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
 }
 
-.card-1 {
-  transform: translateY(20px);
-  background: #f0e6f2;
+.gallery-item:hover {
+  transform: scale(1.05);
+  z-index: 10;
 }
-.card-2 {
-  transform: translateY(0);
-  background: #e6d6ea;
-}
-.card-3 {
-  transform: translateY(-20px);
-  background: #dcc6e0;
+
+/* САМАЯ ВАЖНАЯ ЧАСТЬ: Ключевые кадры для бесконечной прокрутки */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Сдвигаем ровно на половину ширины трека.
+       Так как мы продублировали все элементы, этот сдвиг происходит незаметно. */
+    transform: translateX(-50%);
+  }
 }
 
 /* ===== Адаптивность ===== */
@@ -178,17 +201,13 @@
     padding: 30px;
   }
 
-  .cards {
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
+  .gallery-wrapper {
+    max-width: 100%;
   }
 
-  .card {
-    width: 140px;
-    height: 200px;
-    transform: none !important;
+  .gallery-item {
+    width: 160px;
+    height: 240px;
   }
 }
 
@@ -209,8 +228,25 @@
     font-size: 16px;
   }
 
-  .card {
+  .gallery-item {
+    width: 130px;
+    height: 200px;
+  }
+
+  .gallery-track {
+    gap: 15px;
+    animation-duration: 18s; /* Немного ускоряем анимацию на малых экранах */
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-item {
     width: 100px;
     height: 150px;
+  }
+
+  .gallery-track {
+    gap: 10px;
+    animation-duration: 15s;
   }
 }

@@ -6,7 +6,9 @@
   overflow: hidden;
   display: block; /* чтобы ссылка занимала всю площадь */
   text-decoration: none;
-  transition: box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 /* Затемнение и иконка при наведении */
@@ -18,6 +20,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.media-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(87, 13, 98, 0.3);
 }
 
 .media-card:hover .media-card__overlay {

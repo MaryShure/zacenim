@@ -10,12 +10,14 @@ const MediaCard = ({
   subtitle,
   link,
   onClick,
+  className = "", // дополнительный класс
+  style = {}, // дополнительные инлайн-стили
 }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const handlePlayClick = (e) => {
-    e.preventDefault(); // предотвращаем переход по ссылке
-    e.stopPropagation(); // чтобы не сработал клик по родительской ссылке
+    e.preventDefault();
+    e.stopPropagation();
     setIsClicked(true);
     setTimeout(() => setIsClicked(false), 200);
     if (onClick) onClick(e);
@@ -24,8 +26,8 @@ const MediaCard = ({
   return (
     <a
       href={link}
-      className="media-card"
-      style={{ width, height, backgroundImage: `url(${image})` }}
+      className={`media-card ${className}`}
+      style={{ width, height, backgroundImage: `url(${image})`, ...style }}
       target={link ? "_blank" : undefined}
       rel={link ? "noopener noreferrer" : undefined}
     >
