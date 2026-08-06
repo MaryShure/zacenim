@@ -3,46 +3,39 @@ import "./Hero.css";
 import fullImage from "../assets/gomel_full.webp";
 import pixelImage from "../assets/gomel_pixel.jpg";
 import MediaCard from "./MediaCard";
+import videoCirque from "../assets/цирк_видео.mp4";
 
-// Данные для карточек в галерее
-// Вы можете добавить сюда свои изображения, видео или любые другие компоненты
 const galleryItems = [
   {
     id: 1,
-    image:
-      "https://sferas.by/wp-content/uploads/2024/04/ispytanie-gidranta-1.png",
-    link: "https://example.com/1",
+    videoSrc: videoCirque,
+    link: "https://www.instagram.com/reel/Da5ewPJMUsW/?igsh=MWRhMHJodzU3cHI4bw==",
   },
   {
     id: 2,
-    image:
-      "https://sferas.by/wp-content/uploads/2024/04/ispytanie-gidranta-1.png",
-    link: "https://example.com/2",
+    videoSrc: videoCirque,
+    link: "https://www.instagram.com/reel/Da5ewPJMUsW/?igsh=MWRhMHJodzU3cHI4bw==",
   },
   {
     id: 3,
-    image:
-      "https://sferas.by/wp-content/uploads/2024/04/ispytanie-gidranta-1.png",
-    link: "https://example.com/3",
+    videoSrc: videoCirque,
+    link: "https://www.instagram.com/reel/Da5ewPJMUsW/?igsh=MWRhMHJodzU3cHI4bw==",
   },
   {
     id: 4,
-    image:
-      "https://sferas.by/wp-content/uploads/2024/04/ispytanie-gidranta-1.png",
-    link: "https://example.com/4",
+    videoSrc: videoCirque,
+    link: "https://www.instagram.com/reel/Da5ewPJMUsW/?igsh=MWRhMHJodzU3cHI4bw==",
   },
   {
     id: 5,
-    image:
-      "https://sferas.by/wp-content/uploads/2024/04/ispytanie-gidranta-1.png",
-    link: "https://example.com/5",
+    videoSrc: videoCirque,
+    link: "https://www.instagram.com/reel/Da5ewPJMUsW/?igsh=MWRhMHJodzU3cHI4bw==",
   },
 ];
 
 const Hero = () => {
   const [fullLoaded, setFullLoaded] = useState(false);
 
-  // Загрузка фонового изображения
   useEffect(() => {
     const img = new Image();
     img.src = fullImage;
@@ -52,19 +45,16 @@ const Hero = () => {
 
   return (
     <section className="hero">
-      {/* LQIP (Low Quality Image Placeholder) */}
       <div
         className={`hero__blur ${fullLoaded ? "hidden" : ""}`}
         style={{ backgroundImage: `url(${pixelImage})` }}
       />
-      {/* Основное фоновое изображение */}
       <div
         className={`hero__full ${fullLoaded ? "loaded" : ""}`}
         style={{ backgroundImage: `url(${fullImage})` }}
       />
 
       <div className="hero-content">
-        {/* Левый блок с текстом */}
         <div className="text-block">
           <h1>Заценим.бай</h1>
           <h2>обзорный медиа-проект о Гомеле</h2>
@@ -75,28 +65,26 @@ const Hero = () => {
           <button className="btn-primary">Свяжитесь с нами</button>
         </div>
 
-        {/* Правый блок с бесконечной галереей */}
         <div className="gallery-wrapper">
           <div className="gallery-track">
-            {/* Первый набор карточек */}
             {galleryItems.map((item) => (
               <MediaCard
                 key={item.id}
                 className="gallery-item"
                 width="200px"
                 height="300px"
-                image={item.image}
+                videoSrc={item.videoSrc}
                 link={item.link}
+                // poster не передаём – браузер покажет первый кадр
               />
             ))}
-            {/* Дублируем набор для создания эффекта бесконечности */}
             {galleryItems.map((item) => (
               <MediaCard
                 key={`dup-${item.id}`}
                 className="gallery-item"
                 width="200px"
                 height="300px"
-                image={item.image}
+                videoSrc={item.videoSrc}
                 link={item.link}
               />
             ))}

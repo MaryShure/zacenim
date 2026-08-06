@@ -1,39 +1,37 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import MediaCard from "./MediaCard";
 import "./Works.css";
+// Импортируем видео (путь может отличаться, скорректируйте под свой проект)
+import videoCirque from "../assets/цирк_видео.mp4";
 
 const worksData = [
   {
     id: 1,
-    image:
-      "https://sferas.by/wp-content/uploads/2024/04/ispytanie-gidranta-1.png",
+    videoSrc: videoCirque,
     title: "Цирк",
     subtitle: "Развлечения",
-    link: "https://example.com/1",
+    link: "https://www.instagram.com/reel/Da5ewPJMUsW/?igsh=MWRhMHJodzU3cHI4bw==",
   },
   {
     id: 2,
-    image:
-      "https://sferas.by/wp-content/uploads/2024/04/ispytanie-gidranta-1.png",
+    videoSrc: videoCirque,
     title: 'Ресторан "Сожский бриз"',
     subtitle: "Гастрономия",
-    link: "https://example.com/2",
+    link: "https://www.instagram.com/reel/Da5ewPJMUsW/?igsh=MWRhMHJodzU3cHI4bw==",
   },
   {
     id: 3,
-    image:
-      "https://sferas.by/wp-content/uploads/2024/04/ispytanie-gidranta-1.png",
+    videoSrc: videoCirque,
     title: "Шоу-рум",
     subtitle: "Шоппинг",
-    link: "https://example.com/3",
+    link: "https://www.instagram.com/reel/Da5ewPJMUsW/?igsh=MWRhMHJodzU3cHI4bw==",
   },
   {
     id: 4,
-    image:
-      "https://sferas.by/wp-content/uploads/2024/04/ispytanie-gidranta-1.png",
+    videoSrc: videoCirque,
     title: "Цирк",
     subtitle: "Развлечения",
-    link: "https://example.com/4",
+    link: "https://www.instagram.com/reel/Da5ewPJMUsW/?igsh=MWRhMHJodzU3cHI4bw==",
   },
 ];
 
@@ -48,7 +46,7 @@ function Works() {
   const dragStartX = useRef(0);
   const startTranslateX = useRef(0);
   const currentTranslateX = useRef(0);
-  const maxTranslateX = useRef(0); // максимальное отрицательное смещение
+  const maxTranslateX = useRef(0);
 
   // Мобильный: состояние для touch drag
   const touchStartY = useRef(0);
@@ -74,7 +72,7 @@ function Works() {
       const containerWidth = containerRefDesktop.current.clientWidth;
       const trackWidth = trackRefDesktop.current.scrollWidth;
       if (trackWidth > containerWidth) {
-        maxTranslateX.current = containerWidth - trackWidth; // отрицательное
+        maxTranslateX.current = containerWidth - trackWidth;
       } else {
         maxTranslateX.current = 0;
       }
@@ -111,7 +109,6 @@ function Works() {
     if (!trackRefDesktop.current) return;
     setIsDragging(true);
     dragStartX.current = e.clientX;
-    // Получаем текущий translateX
     const style = window.getComputedStyle(trackRefDesktop.current);
     const matrix = style.transform;
     if (matrix !== "none") {
@@ -134,7 +131,6 @@ function Works() {
     if (!isDragging || !trackRefDesktop.current) return;
     const dx = e.clientX - dragStartX.current;
     let newTranslateX = startTranslateX.current + dx;
-    // Clamp
     newTranslateX = Math.max(maxTranslateX.current, Math.min(0, newTranslateX));
     currentTranslateX.current = newTranslateX;
     trackRefDesktop.current.style.transform = `translateX(${newTranslateX}px)`;
@@ -216,7 +212,7 @@ function Works() {
   };
 
   // ========== Рендеринг ==========
-  // Десктопная версия – без скрытия, но с ограничением скролла
+  // Десктопная версия
   if (!isMobile) {
     return (
       <section className="works" id="works">
@@ -249,11 +245,12 @@ function Works() {
                   key={item.id}
                   width="300px"
                   height="440px"
-                  image={item.image}
+                  videoSrc={item.videoSrc}
                   title={item.title}
                   subtitle={item.subtitle}
                   link={item.link}
                   className="works-card"
+                  // poster не передаём – браузер покажет первый кадр
                 />
               ))}
             </div>
@@ -296,7 +293,7 @@ function Works() {
                 key={item.id}
                 width="100%"
                 height="100%"
-                image={item.image}
+                videoSrc={item.videoSrc}
                 title={item.title}
                 subtitle={item.subtitle}
                 link={item.link}
