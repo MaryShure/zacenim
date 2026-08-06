@@ -4,6 +4,7 @@ import fullImage from "../assets/gomel_full.webp";
 import pixelImage from "../assets/gomel_pixel.jpg";
 import MediaCard from "./MediaCard";
 import videoCirque from "../assets/цирк_видео.mp4";
+import videoBarberShop from "../assets/барбершоп_видео.mp4";
 
 const galleryItems = [
   {
@@ -13,8 +14,8 @@ const galleryItems = [
   },
   {
     id: 2,
-    videoSrc: videoCirque,
-    link: "https://www.instagram.com/reel/Da5ewPJMUsW/?igsh=MWRhMHJodzU3cHI4bw==",
+    videoSrc: videoBarberShop,
+    link: "https://www.instagram.com/reel/DbiFr2YMgb9/?igsh=bjRwMGRoZW95YTZi",
   },
   {
     id: 3,

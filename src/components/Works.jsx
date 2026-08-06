@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import MediaCard from "./MediaCard";
 import "./Works.css";
-// Импортируем видео (путь может отличаться, скорректируйте под свой проект)
 import videoCirque from "../assets/цирк_видео.mp4";
+import videoBarberShop from "../assets/барбершоп_видео.mp4";
 
 const worksData = [
   {
@@ -14,10 +14,10 @@ const worksData = [
   },
   {
     id: 2,
-    videoSrc: videoCirque,
-    title: 'Ресторан "Сожский бриз"',
-    subtitle: "Гастрономия",
-    link: "https://www.instagram.com/reel/Da5ewPJMUsW/?igsh=MWRhMHJodzU3cHI4bw==",
+    videoSrc: videoBarberShop,
+    title: "Барбершоп",
+    subtitle: "Уход за собой",
+    link: "https://www.instagram.com/reel/DbiFr2YMgb9/?igsh=bjRwMGRoZW95YTZi",
   },
   {
     id: 3,
